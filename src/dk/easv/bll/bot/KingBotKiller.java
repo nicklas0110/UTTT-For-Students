@@ -46,9 +46,9 @@ public class KingBotKiller implements IBot {
     }
 
     private List<IMove> getWinningMovesP2(IGameState state) {
-        String player = "1";
+        String player = "0";
         if (state.getMoveNumber() % 2 == 0)
-            player = "0";
+            player = "1";
 
         List<IMove> avail = state.getField().getAvailableMoves();
         String[][] board = state.getField().getBoard();
