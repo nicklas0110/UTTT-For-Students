@@ -4,6 +4,7 @@ import dk.easv.bll.game.IGameState;
 import dk.easv.bll.move.IMove;
 
 public class KingBotKiller implements IBot {
+    private static final String BOTNAME="xXx_KingBotkiller_xXx";
 
 
     @Override
@@ -13,6 +14,6 @@ public class KingBotKiller implements IBot {
 
     @Override
     public String getBotName() {
-        return null;
+        return BOTNAME;
     }
 }
