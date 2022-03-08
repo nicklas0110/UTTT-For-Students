@@ -25,6 +25,7 @@ public class KingBotKiller implements IBot {
             if (state.getField().getMacroboard()[move[0]][move[1]].equals(IField.AVAILABLE_FIELD))
             {
                 List<IMove> winMoves = getWinningMoves(state);
+                System.out.println(winMoves.isEmpty());
                 if (!winMoves.isEmpty())
                     return winMoves.get(0);
                 //find move to play
@@ -57,14 +58,14 @@ public class KingBotKiller implements IBot {
             // Row checking
             int startX = move.getX() - (move.getX() % 3);   // starting point
             int endX = startX + 2;
-            for (int x = startX; x < endX; x++) {
+            for (int x = startX; x <= endX; x++) {
                 if (x != move.getX())
-                    if (!board[x][move.getX()].equals(player))
+                    if (!board[x][move.getY()].equals(player))
                         isRowWin = false;
             }
             if (isRowWin) {
                 winningMoves.add(move);
-                break;
+                //break;
             }
 
 
@@ -73,14 +74,14 @@ public class KingBotKiller implements IBot {
             int startY = move.getY() - (move.getY() % 3);   // starting point
             int endY = startY + 2;
             for (int y = startY; y <= endY; y++) {
-                if (y != move.getX())
+                if (y != move.getY())
                     if (!board[move.getX()][y].equals(player))
                         isColumnWin = false;
             }
 
             if (isColumnWin) {
                 winningMoves.add(move);
-                break;
+                //break;
             }
 
             boolean isDiagWin = true;
@@ -89,16 +90,16 @@ public class KingBotKiller implements IBot {
             if (!(move.getX()==startX && move.getY()==startY))
                 if (!board[startX][startY].equals(player))
                     isDiagWin = false;
-            if (!(move.getX()==startX && move.getY()==startY+1))
-                if (!board[startX][startY].equals(player))
+            if (!(move.getX()==startX+1 && move.getY()==startY+1))
+                if (!board[startX+1][startY+1].equals(player))
                     isDiagWin = false;
-            if (!(move.getX()==startX && move.getY()==startY+2))
+            if (!(move.getX()==startX+2 && move.getY()==startY+2))
                 if (!board[startX + 2][startY + 2].equals(player))
                     isDiagWin = false;
 
             if (isDiagWin) {
                 winningMoves.add(move);
-                break;
+                //break;
             }
 
             boolean isOppositeDiagWin = true;
@@ -114,7 +115,7 @@ public class KingBotKiller implements IBot {
                     isOppositeDiagWin = false;
             if (isOppositeDiagWin) {
                 winningMoves.add(move);
-                break;
+                //break;
             }
 
         }
