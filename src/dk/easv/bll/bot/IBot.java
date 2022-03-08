@@ -1,10 +1,6 @@
 package dk.easv.bll.bot;
 
 import dk.easv.bll.game.IGameState;
-import dk.easv.bll.move.IMove;
-
-import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -18,7 +14,7 @@ public interface IBot {
      * @param state the current dk.easv.bll.game state
      * @return The column where the turn was made.
      */
-    IMove doMove(IGameState state);
+    Object doMove(IGameState state);
 
     String getBotName();
 

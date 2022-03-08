@@ -126,12 +126,12 @@ public class GameManager {
         //Check if player is bot, if so, get bot input and update the state based on that.
         if(mode == GameMode.HumanVsBot && currentPlayer == 1 && playerGoesFirst)
         {
-             IMove botMove = bot.doMove(new GameState(currentState));
+             IMove botMove = (IMove) bot.doMove(new GameState(currentState));
              return updateGame(botMove);
         }
         else if(mode == GameMode.HumanVsBot && !playerGoesFirst && currentPlayer == 0)
         {
-            IMove botMove = bot.doMove(new GameState(currentState));
+            IMove botMove = (IMove) bot.doMove(new GameState(currentState));
             return updateGame(botMove);
         }
         
@@ -145,7 +145,7 @@ public class GameManager {
             assert(bot != null);
             assert(bot2 != null);
 
-            IMove botMove = currentPlayer == 0 ? bot.doMove(new GameState(currentState)) : bot2.doMove(new GameState(currentState));
+            IMove botMove = (IMove) (currentPlayer == 0 ? bot.doMove(new GameState(currentState)) : bot2.doMove(new GameState(currentState)));
 
             return updateGame(botMove);
         }
