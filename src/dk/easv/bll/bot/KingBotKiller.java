@@ -25,7 +25,6 @@ public class KingBotKiller implements IBot {
             if (state.getField().getMacroboard()[move[0]][move[1]].equals(IField.AVAILABLE_FIELD))
             {
                 List<IMove> winMoves = getWinningMoves(state);
-                System.out.println(winMoves.isEmpty());
                 if (!winMoves.isEmpty())
                     return winMoves.get(0);
                 //find move to play
