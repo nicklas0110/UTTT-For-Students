@@ -307,7 +307,7 @@ public class AppController implements Initializable {
     @FXML
     public void clickStart(ActionEvent actionEvent) throws IOException {
         if (simulation.get()) {
-            startSimulation(Math.round(sliderSim.getValue()));
+            startSimulation(Math.round(sliderSim.getValue()*10));
             statsModel.clear();
             openStatsWindow();
         }
