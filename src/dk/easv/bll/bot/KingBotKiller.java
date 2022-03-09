@@ -7,9 +7,11 @@ import dk.easv.bll.move.Move;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class KingBotKiller implements IBot {
     private static final String BOTNAME="xXx_KingBotkiller_xXx";
+    Random rand = new Random();
 
     // Moves {row, col} in order of preferences. {0, 0} at top-left corner
     protected int[][] preferredMovesForKing = {
@@ -20,6 +22,18 @@ public class KingBotKiller implements IBot {
 
     @Override
     public IMove doMove(IGameState state) {
+
+        List<IMove> winMoves = getWinningMoves(state);
+        List<IMove> winMovesP2 = getWinningMovesP2(state);
+        if (!winMoves.isEmpty())
+            return winMoves.get(0);
+        if (!winMovesP2.isEmpty())
+            return winMovesP2.get(0);
+        List<IMove> moves = state.getField().getAvailableMoves();
+        if (moves.size() > 0) {
+            return moves.get(rand.nextInt(moves.size())); /* get random move from available moves */
+        }
+        /*
         //Find macroboard to play in
         for (int[] move : preferredMovesForKing) {
             if (state.getField().getMacroboard()[move[0]][move[1]].equals(IField.AVAILABLE_FIELD))
@@ -28,8 +42,9 @@ public class KingBotKiller implements IBot {
                 List<IMove> winMovesP2 = getWinningMovesP2(state);
                 if (!winMoves.isEmpty())
                     return winMoves.get(0);
-                if (!winMoves.isEmpty())
+                if (!winMovesP2.isEmpty())
                     return winMovesP2.get(0);
+
                 //find move to play
                 for (int[] selectedMove : preferredMovesForKing) {
                     int x = move[0] * 3 + selectedMove[0];
@@ -40,7 +55,7 @@ public class KingBotKiller implements IBot {
                 }
             }
         }
-
+        */
         //NOTE: Something failed, just take the first available move I guess!
         return state.getField().getAvailableMoves().get(0);
     }
