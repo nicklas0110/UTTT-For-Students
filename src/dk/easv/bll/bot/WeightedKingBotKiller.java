@@ -65,10 +65,10 @@ public class WeightedKingBotKiller implements IBot {
         }
 
         for (IMove move: getWinningMoves(state)) {
-            weights[move.getX()][move.getY()] *= 100.0;
+            weights[move.getX()][move.getY()] *= 1000.0;
         }
         for (IMove move: getWinningMovesP2(state)) {
-            weights[move.getX()][move.getY()] *= 100.0;
+            weights[move.getX()][move.getY()] *= 1000.0;
         }
 
         for (int i = 0;i < 9; i++){
