@@ -1,9 +1,9 @@
 package dk.easv.bll.bot;
 
-import dk.easv.bll.field.IField;
+
 import dk.easv.bll.game.IGameState;
 import dk.easv.bll.move.IMove;
-import dk.easv.bll.move.Move;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +12,6 @@ import java.util.Random;
 public class KingBotKiller implements IBot {
     private static final String BOTNAME="KingBotkiller";
     Random rand = new Random();
-
-    // Moves {row, col} in order of preferences. {0, 0} at top-left corner
-    protected int[][] preferredMovesForKing = {
-            {1, 1}, //Center
-            {0, 0}, {2, 2}, {0, 2}, {2, 0},  //Corners ordered across
-            {0, 1}, {2, 1}, {1, 0}, {1, 2}}; //Outer Middles ordered across
 
 
     @Override
@@ -34,29 +28,6 @@ public class KingBotKiller implements IBot {
         if (moves.size() > 0) {
             return moves.get(rand.nextInt(moves.size())); /* get random move from available moves */
         }
-        /*
-        //Find macroboard to play in
-        for (int[] move : preferredMovesForKing) {
-            if (state.getField().getMacroboard()[move[0]][move[1]].equals(IField.AVAILABLE_FIELD))
-            {
-                List<IMove> winMoves = getWinningMoves(state);
-                List<IMove> winMovesP2 = getWinningMovesP2(state);
-                if (!winMoves.isEmpty())
-                    return winMoves.get(0);
-                if (!winMovesP2.isEmpty())
-                    return winMovesP2.get(0);
-
-                //find move to play
-                for (int[] selectedMove : preferredMovesForKing) {
-                    int x = move[0] * 3 + selectedMove[0];
-                    int y = move[1] * 3 + selectedMove[1];
-                    if (state.getField().getBoard()[x][y].equals(IField.EMPTY_FIELD)) {
-                        return new Move(x, y);
-                    }
-                }
-            }
-        }
-        */
         //NOTE: Something failed, just take the first available move I guess!
         return state.getField().getAvailableMoves().get(0);
     }

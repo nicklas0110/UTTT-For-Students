@@ -6,11 +6,11 @@ import dk.easv.bll.move.IMove;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class WeightedKingBotKiller implements IBot {
     private static final String BOTNAME="xXx_KingBotkiller_xXx";
-    Random rand = new Random();
+
 
     @Override
     public IMove doMove(IGameState state) {
